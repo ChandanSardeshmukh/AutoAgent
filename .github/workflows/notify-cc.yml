@@ -11,7 +11,7 @@ jobs:
           avail=$(curl -s https://www.chitalebandhu.in/products/chakli.js \
             | jq '.variants[] | select(.id==49197246120129) | .available')
           echo "available=$avail"
-          if [ "$avail" = "true" ]; then
+          if [ "$avail" = "false" ]; then
             curl -d "Chakli back in stock: https://www.chitalebandhu.in/products/chakli?variant=49197246120129" \
               ntfy.sh/chandan-chakli-8k2x9q
           fi
