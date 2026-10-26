@@ -1,0 +1,17 @@
+name: chakli-stock
+on:
+  schedule:
+    - cron: "30 4,8,13 * * *"   # 10:00, 14:00, 19:00 IST
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          avail=$(curl -s https://www.chitalebandhu.in/products/chakli.js \
+            | jq '.variants[] | select(.id==49197246120129) | .available')
+          echo "available=$avail"
+          if [ "$avail" = "true" ]; then
+            curl -d "Chakli back in stock: https://www.chitalebandhu.in/products/chakli?variant=49197246120129" \
+              ntfy.sh/chandan-chakli-8k2x9q
+          fi
