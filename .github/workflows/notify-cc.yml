@@ -13,7 +13,7 @@ jobs:
           echo "available=$avail"
           curl -d "testing available=$avail" \
               ntfy.sh/CJS-C-C-82xy66gh
-          if [ "$avail" = "false" ]; then
+          if [ "$avail" = "true" ]; then
             curl -d "Chakli back in stock: https://www.chitalebandhu.in/products/chakli?variant=49197246120129" \
               ntfy.sh/CJS-C-C-82xy66gh
           fi
